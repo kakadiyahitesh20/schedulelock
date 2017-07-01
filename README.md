@@ -14,7 +14,6 @@ Schedule Nock application which acts as a mediator between students and professo
 <li>Calender Dashboard</li>
 <li>Forgot password</li>
 <li>Edit Profile</li>
-<li>Remove category by admin</li>
 <li>Manage and remove user by admin</li>
 
 #Useful Tools
