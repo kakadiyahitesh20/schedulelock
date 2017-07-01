@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include head %>
+</head>
+<body  ng-app="myapp">
+<% include header %>
+<div class="container-fluid">
+    <section class="container">
+        <div class="container-page" ng-controller="registerController">
+            <div class="col-md-6">
+                <!-- show any messages that come back with authentication -->
+
+                <form  name="register">
+                    <h3 class="dark-grey">Registration</h3>
+
+                    <div class="form-group col-lg-12">
+                        <label>Name</label>
+                        <input type="" name="fname" class="form-control" id="name" value="" required ng-model="name">
+                    </div>
+
+                    <div class="form-group col-lg-12">
+                        <label>Date Of Birth</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar">
+                                </i>
+                            </div>
+                            <input class="form-control" id="datepicker" name="date123" placeholder="MM/DD/YYYY" type="text" required ng-model="dob">
+
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-12">
+                        <label>Are you Student or Professor ? </label>
+                        <div class="input-group">
+                            <select name="user_role" id="user_role">
+                                <option  value="Student">Student</option>
+                                <option  value="Professor">Professor</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-12">
+                        <label>Email</label>
+                        <input type="email" name="email" class="form-control" id="email" value="" required ng-model="email">
+                    </div>
+
+                    <div class="form-group col-lg-12">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control" id="password" value="" ng-model="password"  required>
+                    </div>
+
+                    <div class="form-group col-lg-12">
+                        <label>Confirm Password</label>
+                        <input type="password" name="password_c" class="form-control" id="password_c" value="" ng-model="password_c" valid-password-c required />
+                        <!--<span ng-show="pasword !== confirmPassword">Password mismatch</span>-->
+                        <!--<div class="msg-block" ng-show="register.$error"> <span class="msg-error" ng-show="register.pw2.$error.pwmatch">Passwords don't match.</span>-->
+                        <span style="color: red" ng-show="!register.password_c.$error.required && register.password_c.$error.noMatch && register.password.$dirty">Passwords do not match.</span>
+                    </div>
+                    <div id="fmessage" style="color: red"></div>
+                    <div class="form-group col-lg-12">
+                        <input type="submit" name="" class="btn btn-danger" id="submit" value="Register" ng-disabled="register.$invalid">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+<% include footer %>
+</body>
+</html>
+<script>
+
+    // On submit click method to get value and validation
+
+    $(document).ready(function(){
+        var name,dob,email,pass,user_role;
+        $("#submit").click(function(){
+            debugger;
+            name = $("#name").val();
+            user_role = $('#user_role').val();
+            dob = $("#datepicker").val();
+            email=$("#email").val();
+            pass=$("#password").val();
+            $.post("/signup",{name:name,user_role:user_role,dob:dob,email:email,pass:pass},function(data){
+                if(data==='done')
+                {
+                    $("#fmessage").empty();
+                    $("#fmessage").append("<p>That email is already taken.</p>");
+                }
+                else {
+                    window.location.href="/login";
+                }
+            });
+        });
+        $('#datepicker').datepicker({
+        });
+    });
+</script>
+
+
+
+

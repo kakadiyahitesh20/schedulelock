@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include head %>
+</head>
+<body  ng-app="myapp">
+<% include header_logged.ejs %>
+<div class="container-fluid">
+    <section class="container">
+        <div class="container-page">
+            <div style="margin-top: 20px;">
+            <h4>Schedule Dashboard <span style="float: right;">Welcome, <%= usersinfo[0].name %></span></h4>
+            </div>
+            <div id='calendar' style="margin-top: 25px;"></div>
+        </div>
+    </section>
+</div>
+
+<% include footer %>
+</body>
+</html>
+<script>
+    $(document).ready(function() {
+        $('#calendar').fullCalendar({
+            defaultDate: '2017-10-01',
+            editable: true,
+            eventLimit: true, // allow "more" link when too many events
+            events: [
+                {
+                    title: 'Advanced IT Management',
+                    start: '2017-10-02T08:15:00'
+                },
+                {
+                    title: 'Java',
+                    start: '2017-10-10T10:00:00',
+                },
+                {
+                    id: 999,
+                    title: 'Innovation Management',
+                    start: '2017-10-05T08:15:00'
+                },
+                {
+                    id: 999,
+                    title: 'Network Security',
+                    start: '2017-10-05T08:15:00'
+                },
+                {
+                    title: 'Entrepreneur and Intrapreneur',
+                    start: '2017-10-06T08:15:00',
+                },
+                {
+                    title: 'Automatic Image Analysis',
+                    start: '2017-10-12T10:30:00',
+                },
+                {
+                    title: 'Lunch',
+                    start: '2017-05-12T12:00:00'
+                },
+                {
+                    title: 'Meeting',
+                    start: '2017-05-12T14:30:00'
+                },
+                {
+                    title: 'Happy Hour',
+                    start: '2017-05-12T17:30:00'
+                },
+                {
+                    title: 'Dinner',
+                    start: '2017-05-12T20:00:00'
+                },
+                {
+                    title: 'Birthday Party',
+                    start: '2017-05-13T07:00:00'
+                },
+                {
+                    title: 'Click for Google',
+                    url: 'http://google.com/',
+                    start: '2017-05-28'
+                }
+            ]
+        });
+
+    });
+</script>
